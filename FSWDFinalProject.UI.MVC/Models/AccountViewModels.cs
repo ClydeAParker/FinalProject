@@ -65,6 +65,12 @@ namespace FSWDFinalProject.UI.MVC.Models
     public class RegisterViewModel
     {
         [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+
+        // Code Omitted for Bevety
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
