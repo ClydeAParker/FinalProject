@@ -191,12 +191,12 @@
     <Content Include="configs\connections.config" />
     <Content Include="_Archive\404.html" />
     <Content Include="_Archive\agent.html" />
-    <Content Include="_Archive\agent2.html" />
-    <Content Include="_Archive\agent3.html" />
+    <Content Include="UnnecessaryItems\agent2.html" />
+    <Content Include="UnnecessaryItems\agent3.html" />
     <Content Include="_Archive\agents-listing.html" />
     <Content Include="_Archive\blog-sidebar.html" />
     <Content Include="_Archive\blog.html" />
-    <Content Include="_Archive\comingsoon.html" />
+    <Content Include="UnnecessaryItems\comingsoon.html" />
     <Content Include="_Archive\contact.html" />
     <Content Include="Content\css\bootstrap-wysihtml5.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -621,8 +621,8 @@
     <Content Include="Content\img\slides\home2.jpg" />
     <Content Include="Content\img\slides\home3.jpg" />
     <Content Include="_Archive\index.html" />
-    <Content Include="_Archive\index2.html" />
-    <Content Include="_Archive\index3.html" />
+    <Content Include="UnnecessaryItems\index2.html" />
+    <Content Include="UnnecessaryItems\index3.html" />
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\classie.js" />
     <Content Include="Scripts\js\gmaps.js" />
@@ -723,8 +723,8 @@
     <Content Include="_Archive\vehicul-left.html" />
     <Content Include="_Archive\vehicul.html" />
     <Content Include="_Archive\vehiculs.html" />
-    <Content Include="_Archive\vehiculs2.html" />
-    <Content Include="_Archive\vehiculs3.html" />
+    <Content Include="UnnecessaryItems\vehiculs2.html" />
+    <Content Include="UnnecessaryItems\vehiculs3.html" />
     <Content Include="Views\Shared\_OriginalLayout.cshtml" />
     <None Include="_Archive\js\jquery-3.3.1.intellisense.js" />
     <Content Include="_Archive\js\jquery-3.3.1.js" />

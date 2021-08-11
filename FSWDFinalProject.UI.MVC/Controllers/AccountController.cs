@@ -1,4 +1,5 @@
-﻿using FSWDFinalProject.UI.MVC.Models;
+﻿//using FSWDFinalProject.Data.EF.FSWDFinalProjectMetadata;
+using FSWDFinalProject.UI.MVC.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -153,9 +154,22 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //#region Dealing with custom user details
+                    //UserDetail newUserDeets = new UserDetail();
+                    //newUserDeets.UserId = user.Id;
+                    //newUserDeets.FirstName = model.FirstName;
+                    //newUserDeets.LastName = model.LastName;
+                    ////newUserDeets.AssetFile = model.AssetFile; //--TODO: handle file upload
+
+                    //FSWDFinalProjectEntities db = new FSWDFinalProjectEntities();
+                    //db.UserDetails.Add(newUserDeets);
+                    //db.SaveChanges();
+
+                    //#endregion
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl +"\">link</a>");
                     ViewBag.Link = callbackUrl;
                     return View("DisplayEmail");
                 }
