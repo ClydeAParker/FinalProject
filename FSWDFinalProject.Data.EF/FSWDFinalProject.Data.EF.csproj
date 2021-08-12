@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{192F82D4-A19F-4AC0-B456-FDE010E73B8F}</ProjectGuid>
+    <ProjectGuid>{6B38B94A-6CBE-444C-A0EF-C7D6CFDF8998}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FSWDFinalProject.Data.EF</RootNamespace>
@@ -50,17 +50,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FPResSys.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPResSys.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FPResSys.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPResSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FPResSys.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPResSys.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="FPResSysMetadata\FPResSysMetadata.cs" />
+    <Compile Include="Location.cs">
+      <DependentUpon>FPResSys.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reservation.cs">
+      <DependentUpon>FPResSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>FPResSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAsset.cs">
+      <DependentUpon>FPResSys.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserDetail.cs">
+      <DependentUpon>FPResSys.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="FPResSys.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FPResSys.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="FPResSys.edmx.diagram">
+      <DependentUpon>FPResSys.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="FPResSys.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FPResSys.Context.cs</LastGenOutput>
+      <DependentUpon>FPResSys.edmx</DependentUpon>
+    </Content>
+    <Content Include="FPResSys.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FPResSys.edmx</DependentUpon>
+      <LastGenOutput>FPResSys.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FSWDFinalProjectMetadata\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

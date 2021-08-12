@@ -819,12 +819,6 @@
     <Content Include="_Archive\js\jquery-3.3.1.slim.min.map" />
     <Content Include="_Archive\js\jquery-3.3.1.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FSWDFinalProject.Data.EF\FSWDFinalProject.Data.EF.csproj">
-      <Project>{192f82d4-a19f-4ac0-b456-fde010e73b8f}</Project>
-      <Name>FSWDFinalProject.Data.EF</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
