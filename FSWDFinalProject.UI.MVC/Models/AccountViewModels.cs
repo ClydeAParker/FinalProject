@@ -65,9 +65,14 @@ namespace FSWDFinalProject.UI.MVC.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Required]
+        [Display(Name = "Phone Number")]
+        public string UserPhone { get; set; }
 
         // Code Omitted for Bevety
         [Required]

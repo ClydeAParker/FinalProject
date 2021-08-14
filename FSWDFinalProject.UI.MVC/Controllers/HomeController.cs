@@ -26,5 +26,18 @@ namespace FSWDFinalProject.UI.MVC.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult AdminMenu()
+        {
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult FranchiseMenu()
+        {
+            return View();
+        }        
     }
 }

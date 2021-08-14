@@ -1,4 +1,5 @@
 ﻿//using FSWDFinalProject.Data.EF.FSWDFinalProjectMetadata;
+using FSWDFinalProject.Data.EF;
 using FSWDFinalProject.UI.MVC.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -154,18 +155,19 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //#region Dealing with custom user details
-                    //UserDetail newUserDeets = new UserDetail();
-                    //newUserDeets.UserId = user.Id;
-                    //newUserDeets.FirstName = model.FirstName;
-                    //newUserDeets.LastName = model.LastName;
-                    ////newUserDeets.AssetFile = model.AssetFile; //--TODO: handle file upload
+                    #region Dealing with custom user details
+                    UserDetail newUserDeets = new UserDetail();
+                    newUserDeets.UserId = user.Id;
+                    newUserDeets.FirstName = model.FirstName;
+                    newUserDeets.LastName = model.LastName;
+                    newUserDeets.UserPhone = model.UserPhone; //--TODO: handle file upload
 
-                    //FSWDFinalProjectEntities db = new FSWDFinalProjectEntities();
-                    //db.UserDetails.Add(newUserDeets);
-                    //db.SaveChanges();
+                    FPResSysEntities db = new FPResSysEntities();
+                    //FsdpEntites db = new FsdpEntites();
+                    db.UserDetails.Add(newUserDeets);
+                    db.SaveChanges();
 
-                    //#endregion
+                    #endregion
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
 
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
