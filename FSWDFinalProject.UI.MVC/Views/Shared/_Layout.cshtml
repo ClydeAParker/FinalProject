@@ -17,9 +17,7 @@
     <link rel="stylesheet" href="../Content/css/colors.css" type="text/css" /><!-- color -->
     <!-- REVOLUTION STYLE SHEETS -->
     <link rel="stylesheet" type="text/css" href="../Scripts/js/rs-plugin/css/settings.css">
-
 </head>
-
 <body>
         <header class="simple-header for-sticky ">
             <!-- Top bar -->
@@ -46,14 +44,24 @@
                             <li><a href="@Url.Action("Index", "Home")">Home</a></li>
                             @*<li> @Html.ActionLink("Location", "Index", "Location")</li>*@
                             <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
-                            <li><a href="@Url.Action("Index", "UserAssets")">Assets</a></li>
-                            <li><a href="@Url.Action("Index", "UserDetails")">UserDetails</a></li>
-                            <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
-                            <li><a href="@Url.Action("AdminMenu", "Home")">Admin Menu</a></li>
-                            <li><a href="@Url.Action("FranchiseMenu", "Home")">Franchise Menu</a></li>
-
                             <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
 
+                            @if (User.IsInRole("Admin") || User.IsInRole("Franchise") || User.IsInRole("Client"))
+                            {
+                                <li><a href="@Url.Action("Index", "UserAssets")">Assets</a></li>
+                                <li><a href="@Url.Action("Index", "UserDetails")">UserDetails</a></li>
+                                <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li><a href="@Url.Action("AdminMenu", "Home")">Admin Menu</a></li>
+                            }
+
+
+                            @if (User.IsInRole("Franchise"))
+                            {
+                                <li><a href="@Url.Action("FranchiseMenu", "Home")">Franchise Menu</a></li>
+                            }
                         </ul>
                     </nav>
                 </div>

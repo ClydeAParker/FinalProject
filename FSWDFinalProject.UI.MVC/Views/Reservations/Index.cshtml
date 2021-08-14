@@ -35,9 +35,13 @@
             @Html.DisplayFor(modelItem => item.UserAsset.AssetName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ReservationId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ReservationId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ReservationId })
+            @Html.ActionLink("Details", "Details", new { id = item.ReservationId }) |
+            @if (User.IsInRole("Admin") || (User.IsInRole("Franchise")))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.ReservationId }) <span>|</span>
+                @Html.ActionLink("Delete", "Delete", new { id = item.ReservationId })
+            }
+
         </td>
     </tr>
 }

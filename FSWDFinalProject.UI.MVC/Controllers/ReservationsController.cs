@@ -15,6 +15,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         private FPResSysEntities db = new FPResSysEntities();
 
         // GET: Reservations
+        [Authorize]
         public ActionResult Index()
         {
             var reservations = db.Reservations.Include(r => r.Location).Include(r => r.UserAsset);
@@ -99,6 +100,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: Reservations/Delete/5
+        [Authorize(Roles = "Admin, Franchise")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

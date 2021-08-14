@@ -28,6 +28,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult AdminMenu()
         {
 
@@ -35,6 +36,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult FranchiseMenu()
         {
             return View();

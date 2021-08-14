@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace FSWDFinalProject.UI.MVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ManageController : Controller
     {
         public ManageController()
@@ -37,6 +37,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         //
         // GET: /Account/Index
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -63,6 +64,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         //
         // GET: /Account/RemoveLogin
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult RemoveLogin()
         {
             var linkedAccounts = UserManager.GetLogins(User.Identity.GetUserId());
@@ -73,6 +75,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
         {
@@ -98,6 +101,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         //
         // GET: /Account/AddPhoneNumber
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddPhoneNumber()
         {
             return View();
@@ -106,6 +110,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         //
         // POST: /Account/AddPhoneNumber
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
@@ -130,6 +135,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         //
         // POST: /Manage/RememberBrowser
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult RememberBrowser()
         {
@@ -141,6 +147,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         //
         // POST: /Manage/ForgetBrowser
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult ForgetBrowser()
         {
@@ -151,6 +158,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         //
         // POST: /Manage/EnableTFA
         [HttpPost]
+        [Authorize(Roles ="Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTFA()
         {

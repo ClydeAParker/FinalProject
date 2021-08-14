@@ -36,6 +36,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: Locations/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             return View();
@@ -45,6 +46,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LocationId,LocationName,Address,City,State,ZipCode,ReservationLimit")] Location location)
         {
@@ -77,6 +79,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "LocationId,LocationName,Address,City,State,ZipCode,ReservationLimit")] Location location)
         {
@@ -106,6 +109,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
 
         // POST: Locations/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

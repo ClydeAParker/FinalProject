@@ -90,6 +90,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // GET: UserDetails/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -105,6 +106,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         }
 
         // POST: UserDetails/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
