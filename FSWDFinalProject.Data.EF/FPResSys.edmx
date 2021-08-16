@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FPResSysModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FPResSysModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Locations">
           <Key>
             <PropertyRef Name="LocationId" />
@@ -21,20 +21,10 @@
           <Key>
             <PropertyRef Name="ReservationId" />
           </Key>
-          <Property Name="ReservationId" Type="int" Nullable="false" />
+          <Property Name="ReservationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserAssetId" Type="int" Nullable="false" />
-          <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationId" Type="int" Nullable="false" />
           <Property Name="ReservationDate" Type="date" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="UserAssets">
           <Key>
@@ -57,8 +47,9 @@
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UserPhone" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="LocationId" Type="int" />
         </EntityType>
-        <Association Name="FK_Reservations_Locations">
+        <Association Name="FK_Reservations_Locations2">
           <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -70,7 +61,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservations_UserAssets">
+        <Association Name="FK_Reservations_UserAssets1">
           <End Role="UserAssets" Type="Self.UserAssets" Multiplicity="1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -82,7 +73,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserAssets_UserDetails">
+        <Association Name="FK_UserAssets_UserDetails1">
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
           <End Role="UserAssets" Type="Self.UserAssets" Multiplicity="*" />
           <ReferentialConstraint>
@@ -94,145 +85,167 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserDetails_Locations">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="0..1" />
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="UserDetails">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FPResSysModelStoreContainer">
           <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAssets" EntityType="Self.UserAssets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Reservations_Locations" Association="Self.FK_Reservations_Locations">
+          <AssociationSet Name="FK_Reservations_Locations2" Association="Self.FK_Reservations_Locations2">
             <End Role="Locations" EntitySet="Locations" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservations_UserAssets" Association="Self.FK_Reservations_UserAssets">
+          <AssociationSet Name="FK_Reservations_UserAssets1" Association="Self.FK_Reservations_UserAssets1">
             <End Role="UserAssets" EntitySet="UserAssets" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserAssets_UserDetails" Association="Self.FK_UserAssets_UserDetails">
+          <AssociationSet Name="FK_UserAssets_UserDetails1" Association="Self.FK_UserAssets_UserDetails1">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="UserAssets" EntitySet="UserAssets" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserDetails_Locations" Association="Self.FK_UserDetails_Locations">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FPResSysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FPResSysEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Locations" EntityType="FPResSysModel.Location" />
+          <EntitySet Name="UserAssets" EntityType="FPResSysModel.UserAsset" />
+          <EntitySet Name="UserDetails" EntityType="FPResSysModel.UserDetail" />
+          <AssociationSet Name="FK_UserDetails_Locations" Association="FPResSysModel.FK_UserDetails_Locations">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="UserDetail" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAssets_UserDetails1" Association="FPResSysModel.FK_UserAssets_UserDetails1">
+            <End Role="UserDetail" EntitySet="UserDetails" />
+            <End Role="UserAsset" EntitySet="UserAssets" />
+          </AssociationSet>
+          <EntitySet Name="Reservations" EntityType="FPResSysModel.Reservation" />
+          <AssociationSet Name="FK_Reservations_Locations2" Association="FPResSysModel.FK_Reservations_Locations2">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Reservation" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservations_UserAssets1" Association="FPResSysModel.FK_Reservations_UserAssets1">
+            <End Role="UserAsset" EntitySet="UserAssets" />
+            <End Role="Reservation" EntitySet="Reservations" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Location">
           <Key>
             <PropertyRef Name="LocationId" />
           </Key>
           <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="ZipCode" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="ReservationLimit" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Locations" FromRole="Locations" ToRole="Reservations" />
-        </EntityType>
-        <EntityType Name="Reservation">
-          <Key>
-            <PropertyRef Name="ReservationId" />
-          </Key>
-          <Property Name="ReservationId" Type="Int32" Nullable="false" />
-          <Property Name="UserAssetId" Type="Int32" Nullable="false" />
-          <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ReservationDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Location" Relationship="Self.FK_Reservations_Locations" FromRole="Reservations" ToRole="Locations" />
-          <NavigationProperty Name="UserAsset" Relationship="Self.FK_Reservations_UserAssets" FromRole="Reservations" ToRole="UserAssets" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LocationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="ReservationLimit" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="UserDetails" Relationship="FPResSysModel.FK_UserDetails_Locations" FromRole="Location" ToRole="UserDetail" />
+          <NavigationProperty Name="Reservations" Relationship="FPResSysModel.FK_Reservations_Locations2" FromRole="Location" ToRole="Reservation" />
         </EntityType>
         <EntityType Name="UserAsset">
           <Key>
             <PropertyRef Name="UserAssetId" />
           </Key>
           <Property Name="UserAssetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssetName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="AssetPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SpecialNotes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="AssetYear" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_UserAssets" FromRole="UserAssets" ToRole="Reservations" />
-          <NavigationProperty Name="UserDetail" Relationship="Self.FK_UserAssets_UserDetails" FromRole="UserAssets" ToRole="UserDetails" />
+          <NavigationProperty Name="UserDetail" Relationship="FPResSysModel.FK_UserAssets_UserDetails1" FromRole="UserAsset" ToRole="UserDetail" />
+          <NavigationProperty Name="Reservations" Relationship="FPResSysModel.FK_Reservations_UserAssets1" FromRole="UserAsset" ToRole="Reservation" />
         </EntityType>
         <EntityType Name="UserDetail">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserPhone" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="UserAssets" Relationship="Self.FK_UserAssets_UserDetails" FromRole="UserDetails" ToRole="UserAssets" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserPhone" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="LocationId" Type="Int32" />
+          <NavigationProperty Name="Location" Relationship="FPResSysModel.FK_UserDetails_Locations" FromRole="UserDetail" ToRole="Location" />
+          <NavigationProperty Name="UserAssets" Relationship="FPResSysModel.FK_UserAssets_UserDetails1" FromRole="UserDetail" ToRole="UserAsset" />
         </EntityType>
-        <Association Name="FK_Reservations_Locations">
-          <End Role="Locations" Type="Self.Location" Multiplicity="1" />
-          <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+        <Association Name="FK_UserDetails_Locations">
+          <End Type="FPResSysModel.Location" Role="Location" Multiplicity="0..1" />
+          <End Type="FPResSysModel.UserDetail" Role="UserDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Locations">
+            <Principal Role="Location">
               <PropertyRef Name="LocationId" />
             </Principal>
-            <Dependent Role="Reservations">
+            <Dependent Role="UserDetail">
               <PropertyRef Name="LocationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservations_UserAssets">
-          <End Role="UserAssets" Type="Self.UserAsset" Multiplicity="1" />
-          <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+        <Association Name="FK_UserAssets_UserDetails1">
+          <End Type="FPResSysModel.UserDetail" Role="UserDetail" Multiplicity="1" />
+          <End Type="FPResSysModel.UserAsset" Role="UserAsset" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserAssets">
-              <PropertyRef Name="UserAssetId" />
-            </Principal>
-            <Dependent Role="Reservations">
-              <PropertyRef Name="UserAssetId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserAssets_UserDetails">
-          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="1" />
-          <End Role="UserAssets" Type="Self.UserAsset" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserDetails">
+            <Principal Role="UserDetail">
               <PropertyRef Name="UserId" />
             </Principal>
-            <Dependent Role="UserAssets">
+            <Dependent Role="UserAsset">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FPResSysEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Locations" EntityType="Self.Location" />
-          <EntitySet Name="Reservations" EntityType="Self.Reservation" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="UserAssets" EntityType="Self.UserAsset" />
-          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
-          <AssociationSet Name="FK_Reservations_Locations" Association="Self.FK_Reservations_Locations">
-            <End Role="Locations" EntitySet="Locations" />
-            <End Role="Reservations" EntitySet="Reservations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reservations_UserAssets" Association="Self.FK_Reservations_UserAssets">
-            <End Role="UserAssets" EntitySet="UserAssets" />
-            <End Role="Reservations" EntitySet="Reservations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserAssets_UserDetails" Association="Self.FK_UserAssets_UserDetails">
-            <End Role="UserDetails" EntitySet="UserDetails" />
-            <End Role="UserAssets" EntitySet="UserAssets" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationId" />
+          </Key>
+          <Property Name="ReservationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserAssetId" Type="Int32" Nullable="false" />
+          <Property Name="LocationId" Type="Int32" Nullable="false" />
+          <Property Name="ReservationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Location" Relationship="FPResSysModel.FK_Reservations_Locations2" FromRole="Reservation" ToRole="Location" />
+          <NavigationProperty Name="UserAsset" Relationship="FPResSysModel.FK_Reservations_UserAssets1" FromRole="Reservation" ToRole="UserAsset" />
+        </EntityType>
+        <Association Name="FK_Reservations_Locations2">
+          <End Type="FPResSysModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="FPResSysModel.Reservation" Role="Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservations_UserAssets1">
+          <End Type="FPResSysModel.UserAsset" Role="UserAsset" Multiplicity="1" />
+          <End Type="FPResSysModel.Reservation" Role="Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAsset">
+              <PropertyRef Name="UserAssetId" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="UserAssetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -241,58 +254,48 @@
           <EntitySetMapping Name="Locations">
             <EntityTypeMapping TypeName="FPResSysModel.Location">
               <MappingFragment StoreEntitySet="Locations">
-                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
-                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
                 <ScalarProperty Name="ReservationLimit" ColumnName="ReservationLimit" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reservations">
-            <EntityTypeMapping TypeName="FPResSysModel.Reservation">
-              <MappingFragment StoreEntitySet="Reservations">
-                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
-                <ScalarProperty Name="UserAssetId" ColumnName="UserAssetId" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
                 <ScalarProperty Name="LocationId" ColumnName="LocationId" />
-                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="FPResSysModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserAssets">
             <EntityTypeMapping TypeName="FPResSysModel.UserAsset">
               <MappingFragment StoreEntitySet="UserAssets">
-                <ScalarProperty Name="UserAssetId" ColumnName="UserAssetId" />
-                <ScalarProperty Name="AssetName" ColumnName="AssetName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="AssetPhoto" ColumnName="AssetPhoto" />
-                <ScalarProperty Name="SpecialNotes" ColumnName="SpecialNotes" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="AssetYear" ColumnName="AssetYear" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SpecialNotes" ColumnName="SpecialNotes" />
+                <ScalarProperty Name="AssetPhoto" ColumnName="AssetPhoto" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+                <ScalarProperty Name="UserAssetId" ColumnName="UserAssetId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserDetails">
             <EntityTypeMapping TypeName="FPResSysModel.UserDetail">
               <MappingFragment StoreEntitySet="UserDetails">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="FPResSysModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservations">
+                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="UserAssetId" ColumnName="UserAssetId" />
+                <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

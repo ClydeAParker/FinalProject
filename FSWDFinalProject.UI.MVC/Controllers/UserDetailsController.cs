@@ -46,7 +46,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,FirstName,LastName,UserPhone")] UserDetail userDetail)
+        public ActionResult Create([Bind(Include = "UserId,FirstName,LastName,UserPhone,LocationId")] UserDetail userDetail)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName,UserPhone")] UserDetail userDetail)
+        public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName,UserPhone,LocationId")] UserDetail userDetail)
         {
             if (ModelState.IsValid)
             {

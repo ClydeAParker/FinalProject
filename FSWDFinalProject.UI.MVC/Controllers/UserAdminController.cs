@@ -140,7 +140,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
             return View(new EditUserViewModel()
             {
                 Id = user.Id,
-                Email = user.Email,
+                Email = user.Email,              
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
                 {
                     Selected = userRoles.Contains(x.Name),

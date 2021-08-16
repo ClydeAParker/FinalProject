@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1ea523d2c09547b4a320be1ad10f662a" Name="Diagram1">
-        <EntityTypeShape EntityType="FPResSysModel.Location" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FPResSysModel.Reservation" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FPResSysModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FPResSysModel.UserAsset" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="FPResSysModel.UserDetail" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="FPResSysModel.FK_Reservations_Locations" ManuallyRouted="false" />
-        <AssociationConnector Association="FPResSysModel.FK_Reservations_UserAssets" ManuallyRouted="false" />
-        <AssociationConnector Association="FPResSysModel.FK_UserAssets_UserDetails" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="FPResSysModel.Location" Width="1.5" PointX="0.75" PointY="9.625" />
+        <EntityTypeShape EntityType="FPResSysModel.UserAsset" Width="1.5" PointX="5.25" PointY="9.625" />
+        <EntityTypeShape EntityType="FPResSysModel.UserDetail" Width="1.5" PointX="3" PointY="9.875" />
+        <AssociationConnector Association="FPResSysModel.FK_UserDetails_Locations" />
+        <AssociationConnector Association="FPResSysModel.FK_UserAssets_UserDetails1" />
+        <EntityTypeShape EntityType="FPResSysModel.Reservation" Width="1.5" PointX="7.5" PointY="10" />
+        <AssociationConnector Association="FPResSysModel.FK_Reservations_Locations2" />
+        <AssociationConnector Association="FPResSysModel.FK_Reservations_UserAssets1" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

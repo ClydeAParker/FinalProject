@@ -73,9 +73,6 @@
     <Compile Include="Reservation.cs">
       <DependentUpon>FPResSys.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>FPResSys.tt</DependentUpon>
-    </Compile>
     <Compile Include="UserAsset.cs">
       <DependentUpon>FPResSys.tt</DependentUpon>
     </Compile>

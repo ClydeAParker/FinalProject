@@ -29,8 +29,8 @@ namespace FSWDFinalProject.Data.EF
         public System.DateTime DateAdded { get; set; }
         public Nullable<System.DateTime> AssetYear { get; set; }
     
+        public virtual UserDetail UserDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }
-        public virtual UserDetail UserDetail { get; set; }
     }
 }

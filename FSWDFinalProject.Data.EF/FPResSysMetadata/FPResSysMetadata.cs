@@ -66,6 +66,12 @@ namespace FSWDFinalProject.Data.EF//.FPResSysMetadata
         [StringLength(15, ErrorMessage = "* Character limit reached. Please contact system administrator if more room is needed")]
         [Display(Name = "Phone Number")]
         public string UserPhone { get; set; }
+
+        [Display(Name = "Location ID")]
+        [Required(ErrorMessage = "Location ID is required")]
+        [DisplayFormat(NullDisplayText = "[-N/A-]")]
+        public Nullable<int> LocationId { get; set; }
+    
     }
     #endregion
 
@@ -114,12 +120,12 @@ namespace FSWDFinalProject.Data.EF//.FPResSysMetadata
 
     #region Reservation
     [MetadataType(typeof(ReservationMetadata))]
-    public partial class Reservation { }
+    public partial class Reservations { }
     public class ReservationMetadata
     {
-        [Display(Name = "Reservation ID")]
-        [Required(ErrorMessage = "Reservation ID is required")]
-        public int ReservationId { get; set; }
+        //[Display(Name = "Reservation ID")]
+        //[Required(ErrorMessage = "Reservation ID is required")]
+        //public int ReservationId { get; set; }
 
         [Display(Name = "Asset ID")]
         [Required(ErrorMessage = "Asset ID is required")]

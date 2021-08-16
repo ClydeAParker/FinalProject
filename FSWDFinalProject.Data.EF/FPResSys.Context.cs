@@ -26,9 +26,8 @@ namespace FSWDFinalProject.Data.EF
         }
     
         public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<Reservation> Reservations { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserAsset> UserAssets { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
+        public virtual DbSet<Reservation> Reservations { get; set; }
     }
 }

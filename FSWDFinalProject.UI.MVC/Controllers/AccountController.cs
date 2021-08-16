@@ -4,6 +4,7 @@ using FSWDFinalProject.UI.MVC.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -139,10 +140,11 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            FPResSysEntities db = new FPResSysEntities();
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
             return View();
         }
-
-        //
+        
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -161,10 +163,13 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                     newUserDeets.FirstName = model.FirstName;
                     newUserDeets.LastName = model.LastName;
                     newUserDeets.UserPhone = model.UserPhone; //--TODO: handle file upload
+                    newUserDeets.LocationId = model.LocationId;
+                    UserManager.AddToRole(user.Id, "Client");
 
                     FPResSysEntities db = new FPResSysEntities();
                     //FsdpEntites db = new FsdpEntites();
                     db.UserDetails.Add(newUserDeets);
+                    
                     db.SaveChanges();
 
                     #endregion
@@ -172,7 +177,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
 
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl +"\">link</a>");
-                    UserManager.AddToRole(user.Id, "Client");
+                    
 
                     ViewBag.Link = callbackUrl;
                     return View("DisplayEmail");

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FSWDFinalProject.UI.MVC.Models
@@ -64,17 +65,7 @@ namespace FSWDFinalProject.UI.MVC.Models
 
     public class RegisterViewModel
     {
-        [Required]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
-        [Required]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
-        [Required]
-        [Display(Name = "Phone Number")]
-        public string UserPhone { get; set; }
 
-        // Code Omitted for Bevety
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -90,6 +81,19 @@ namespace FSWDFinalProject.UI.MVC.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+        [Required]
+        [Display(Name = "Phone Number")]
+        public string UserPhone { get; set; }
+        [Display(Name = "Location ID")]
+        public Nullable<int> LocationId { get; set; }
+
     }
 
     public class ResetPasswordViewModel

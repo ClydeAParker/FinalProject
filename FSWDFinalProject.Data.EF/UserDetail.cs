@@ -24,7 +24,9 @@ namespace FSWDFinalProject.Data.EF
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserPhone { get; set; }
+        public Nullable<int> LocationId { get; set; }
     
+        public virtual Location Location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserAsset> UserAssets { get; set; }
     }
