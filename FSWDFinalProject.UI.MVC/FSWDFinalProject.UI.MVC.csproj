@@ -186,9 +186,22 @@
     <Compile Include="Models\UserDetailsViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\UploadUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="Content\img\CAI\2c2b691e-0d7b-43ad-b8ac-2c843e0d00bb.jpg" />
+    <Content Include="Content\img\CAI\a43bebd5-4ca6-408a-b54e-7edee5748761.jpg" />
+    <Content Include="Content\img\CAI\cfd06a33-e8b8-470c-8c9d-554300030413.jpg" />
+    <Content Include="Content\img\demo\Audi-R8.jpg" />
+    <Content Include="Content\img\demo\Bugatti.jpg" />
+    <Content Include="Content\img\demo\Porsche-911-Carrera.jpg" />
+    <Content Include="Content\img\demo\WideBody-C8-Corvette.jpg" />
+    <Content Include="Content\img\slides\RedRX7.jpg" />
+    <Content Include="Content\img\slides\RegRX7.jpg" />
+    <Content Include="Content\img\CAI\t_2c2b691e-0d7b-43ad-b8ac-2c843e0d00bb.jpg" />
+    <Content Include="Content\img\CAI\t_a43bebd5-4ca6-408a-b54e-7edee5748761.jpg" />
+    <Content Include="Content\img\CAI\t_cfd06a33-e8b8-470c-8c9d-554300030413.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="_Archive\js\bootstrap.js" />
@@ -608,10 +621,6 @@
     <Content Include="Content\img\demo\agent2.jpg" />
     <Content Include="Content\img\demo\agent3.jpg" />
     <Content Include="Content\img\demo\man1.jpg" />
-    <Content Include="Content\img\demo\vehicul1.jpg" />
-    <Content Include="Content\img\demo\vehicul2.jpg" />
-    <Content Include="Content\img\demo\vehicul3.jpg" />
-    <Content Include="Content\img\demo\vehicul4.jpg" />
     <Content Include="Content\img\demo\vehicul5.jpg" />
     <Content Include="Content\img\footer.jpg" />
     <Content Include="Content\img\home1.jpg" />
@@ -752,7 +761,6 @@
     <Content Include="Views\UserDetails\Edit.cshtml" />
     <Content Include="Views\UserDetails\Index.cshtml" />
     <Content Include="Views\Home\AdminMenu.cshtml" />
-    <Content Include="Views\Home\FranchiseMenu.cshtml" />
     <None Include="_Archive\js\jquery-3.3.1.intellisense.js" />
     <Content Include="_Archive\js\jquery-3.3.1.js" />
     <Content Include="_Archive\js\jquery-3.3.1.min.js" />

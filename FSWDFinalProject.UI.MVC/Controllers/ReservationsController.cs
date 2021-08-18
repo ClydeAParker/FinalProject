@@ -27,12 +27,12 @@ namespace FSWDFinalProject.UI.MVC.Controllers
                 var reservations = db.Reservations.Include(r => r.Location).Include(r => r.UserAsset);
                 return View(reservations.ToList());
             }
-            else if(User.IsInRole("Franchise")) //ELSE IF the user is a Franchise
+            else if (User.IsInRole("Franchise")) //ELSE IF the user is a Franchise
             {
                 //Franchise employees can see all records for a single location 
                 var cLocation = (from l in db.UserDetails
-                                where l.LocationId == l.LocationId && l.UserId == currentUser
-                                select l).FirstOrDefault();
+                                 where l.LocationId == l.LocationId && l.UserId == currentUser
+                                 select l).FirstOrDefault();
                 var userReservation = from r in db.Reservations
                                       where r.LocationId == cLocation.LocationId
                                       select r;
@@ -70,9 +70,21 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // GET: Reservations/Create
         public ActionResult Create()
         {
-            var currentUser = User.Identity.GetUserId();            
-                ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
+            var currentUser = User.Identity.GetUserId();
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
+            if (User.IsInRole("Admin") || User.IsInRole("Franchise"))
+            {
                 ViewBag.UserAssetId = new SelectList(db.UserAssets, "UserAssetId", "AssetName");
+            }
+            else
+            {
+                var resAsset = from u in db.UserAssets
+                                where u.UserId == currentUser
+                                select u;
+
+                ViewBag.UserAssetId = new SelectList(resAsset, "UserAssetId", "AssetName");
+            }
+
             return View();
         }
 
@@ -83,7 +95,7 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserAssetId,LocationId,ReservationDate")] Reservation reservation)
         {
-            var currentUser = User.Identity.GetUserId();  
+            var currentUser = User.Identity.GetUserId();
             //if the form information, program and database is running correctly with no issues. 
             if (ModelState.IsValid)
             {
@@ -99,16 +111,16 @@ namespace FSWDFinalProject.UI.MVC.Controllers
 
                     //Linq statement to decide the location count for how many reservations are made on a specific date by checking all records in the location DB against the location ID requested by the user.
                     var resRecords = from r in db.Reservations
-                                   where reservation.ReservationDate == r.ReservationDate && r.LocationId == reservation.LocationId//this line checks reservation lovactions in DB the location ID
-                                   select r;
+                                     where reservation.ReservationDate == r.ReservationDate && r.LocationId == reservation.LocationId//this line checks reservation lovactions in DB the location ID
+                                     select r;
 
                     //Linq statement to obtain the Location record for the location requested by the user.  We need this to get the reservation limit for that location. 
                     var locationCnt = (from l in db.Locations  //pulling from location db
                                        where l.LocationId == reservation.LocationId //matching location db info against the user requested location
                                        select l).FirstOrDefault(); //because this query could return a list of locations, we need to specify that we only want ONE location record. The first or default location record. 
-                   
+
                     //Because the reservation limit was entered in the DB as a "char(15)", the controller reads it as a string, rather than a number. This line of code converts the string into a usable integer for the reservation limit of the user requested location.
-                    var resLimit = Convert.ToInt32(locationCnt.ReservationLimit); 
+                    var resLimit = Convert.ToInt32(locationCnt.ReservationLimit);
 
                     //This line subtracts the number of existing records from the reservation limit of the requested location and stores the anser in the variable resCheck       
                     var resCheck = resLimit - resRecords.Count();

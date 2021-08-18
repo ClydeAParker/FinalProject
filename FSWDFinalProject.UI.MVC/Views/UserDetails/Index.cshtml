@@ -3,11 +3,12 @@
 @{
     ViewBag.Title = "UserDetail Index";
 }
+<clear></clear>
 
-<h2>Index</h2>
+<h2 class="center">Account</h2>
 @if (User.IsInRole("Admin"))
 {
-    <p>
+    <p class="createBtn center">
         @Html.ActionLink("Create New", "Create")
     </p>
 }
@@ -28,29 +29,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserPhone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LocationId)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
-            @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
-            @if (User.IsInRole("Admin"))
-            {
-                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
-            }
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationId)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                }
+            </td>
+        </tr>
+    }
 
 </table>

@@ -44,6 +44,21 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,800');
 
+.strong {
+    font-weight: bold;
+    font-size: larger;   
+}
+
+.createBtn {
+    font-weight: bold;
+    font-size: larger;
+    padding-left: 7px;
+}
+
+.center {
+    text-align: center;
+}
+
 html, body{
     overflow-x:hidden;
 }
@@ -54,10 +69,12 @@ body{
     letter-spacing:0.4px;
     color:#777777;
     position:relative;
+  
 }
 h1,h2,h3,h4,h5,h6{
     font-family:montserrat;
     color:#2e2e2e;
+    font-weight: bold;
 }
 p{
     font-family:open sans;
@@ -93,7 +110,7 @@ input[type="checkbox"] {
 ul li ,ul li a,
 ol li,ol li a{
     font-family:open sans;
-    color:#666666;
+    color:black;
     font-size:14px;
     line-height:26px;
 }
@@ -103,7 +120,7 @@ a:focus{
     outline:none;
 }
 a:hover{
-    color: #FF2929;
+    color: #ec001d;
 }
 .theme-layout{
     float:left;
@@ -140,7 +157,7 @@ height: 40px;
 padding: 0px;
 font-size: 30px;
 text-align: center;
-background: #FF2929;
+background: #ec001d;
 color: white;
 position: fixed;
 bottom: 20px;
@@ -303,7 +320,7 @@ iframe{
     margin: -5px;
 }
 .map-vehicul-price {
-    color: #ff2929;
+    color: #ec001d;
     font-family: Montserrat;
     font-size: 22px;
 }
@@ -448,13 +465,13 @@ iframe{
 }
 .menu nav > ul > li {
     float: left;
-    padding: 49px 22px;
+    padding: 22px;
     position: relative;
 
 }
 .simple-header.for-sticky.sticky > .menu nav > ul > li {
-    padding-top: 35px;
-    padding-bottom: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .menu nav > ul > li:hover {
     background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
@@ -527,35 +544,37 @@ iframe{
 .popup-client {
     float: right;
     margin-left: 65px;
+    margin-top: 0%;
 }
 .popup-client > span {
     background: #353535 none repeat scroll 0 0;
 
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
-    border-radius: 30px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    border-radius: 50px;
 
     color: #ffffff;
     float: left;
     font-family: Montserrat;
-    font-size: 13px;
+    font-size: 27px;
     font-weight: normal;
     letter-spacing: 0.3px;
     margin: 39px 0;
-    padding: 13px 30px;
+    padding: 5px 30px;
     cursor: pointer;
 }
 .popup-client > span:hover{
     background: #ffffff;
 }
 .simple-header.for-sticky.sticky > .menu .popup-client > span {
-    margin: 25px 0;
+    margin: 15px 0;
 }
 .popup-client > span i {
     font-size: 16px;
-    margin-right: 4px;
+    margin-right: 1px;
+    margin-left: 1px;
 }
 
 /*=============== Inner Head ===================*/
@@ -1695,7 +1714,7 @@ blockquote p {
     left: auto;
     margin-left: -35px;
     border-radius: 50%;
-    background-color: #FF2929;
+    background-color: #ec001d;
     height: 80px;
     width: 80px;
     padding: 0px;
@@ -2895,16 +2914,17 @@ body.fixed-bg-boxed {
     margin-bottom: 45px;
 }
 .vehiculs-thumb {
-    float: left;
+    /*float: left;
     position: relative;
     width: 100%;
     z-index: 0;
+    margin-left: 0%;*/
 }
 .vehiculs-thumb > img {
-    float: left;
-    width: 100%;
-    min-height: 350px;
-    max-height: 350px;
+   
+    width: 450px;
+    min-height: 400px;
+    max-height: 400px;    
 } 
 .vehiculs-thumb .spn-status{
     position: absolute;
@@ -2925,8 +2945,8 @@ body.fixed-bg-boxed {
     background-color: rgba(224, 224, 224, 0.66);
     border-radius: 50%;
     color: rgb(255, 255, 255);
-    width: 40px;
-    height: 40px;
+    /*width: 120px;
+    height: 10px;*/
     padding: 7px 10px;
     margin: 0px;
     font-size: 19px;
@@ -2978,7 +2998,7 @@ body.fixed-bg-boxed {
     bottom: 30px;
 }
 .star-on-png, .star-half-png, .star-half-png {
-    color: #FF2929 !important;
+    color: #ec001d !important;
 }
 .vehiculs-box > h3 {
     color: #1b1d21;
@@ -2998,7 +3018,7 @@ body.fixed-bg-boxed {
     font-size: 22px;
 }
 .vehiculs-thumb::before {
-    background: #000000 none repeat scroll 0 0;
+    
     content: "";
     height: 100%;
     left: 0;
@@ -3604,7 +3624,7 @@ width: 100%;
 margin: 0px;
 }
 .fsearch-title i {
-    background: #FF2929;
+    background: #ec001d;
     color: #fff;
     display: inline-block;
     width: 61px;
@@ -3750,7 +3770,7 @@ margin: 0px;
     text-align: center;
 }
 .slider-selection { 
-    background: none repeat scroll 0 0 #FF2929;
+    background: none repeat scroll 0 0 #ec001d;
 }
 .vehicul-detail{
     background: rgba(242, 242, 242, 0.9) none repeat scroll 0 0;
@@ -3799,7 +3819,7 @@ margin: 0px;
     margin-bottom: 10px;
 }
 .agent_widget span i{
-    color: #FF2929;
+    color: #ec001d;
     font-weight: bold;
     font-size: 19px;
 }
@@ -3813,7 +3833,7 @@ margin: 0px;
     padding-right: 5px;
 }
 .agent_widget .agent_social i:hover {
-    color:#FF2929;
+    color:#ec001d;
 }
 .agent_widget .contact-agent{
     border-radius: 30px;
@@ -3825,7 +3845,7 @@ margin: 0px;
     padding: 13px 30px;
     cursor: pointer;
     clear: both;
-    background-color: #FF2929;
+    background-color: #ec001d;
     margin: 30px 0;
 }
 .agent-menu {
@@ -4031,7 +4051,7 @@ i.fa.fa-th, i.fa.fa-th-list {
     box-shadow: none;
 }
 i.fa.fa-th{
-    color: #FF2929;
+    color: #ec001d;
 }
 .vehicul-grid {
     border: 1px solid #EDEDED;

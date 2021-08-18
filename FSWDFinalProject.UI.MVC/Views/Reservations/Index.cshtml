@@ -3,10 +3,16 @@
 @{
     ViewBag.Title = "Index";
 }
+<clear></clear>
 
-<h2>Index</h2>
+<br />
+<br />
+<br />
+<br />
 
-<p>
+<h2 class="center">Reservations</h2>
+
+<p class="createBtn class=" center"">
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
@@ -23,27 +29,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReservationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location.LocationName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserAsset.AssetName)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.ReservationId }) |
-            @if (User.IsInRole("Admin") || (User.IsInRole("Franchise")))
-            {
-                @Html.ActionLink("Edit", "Edit", new { id = item.ReservationId }) <span>|</span>
-                @Html.ActionLink("Delete", "Delete", new { id = item.ReservationId })
-            }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserAsset.AssetName)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ReservationId }) |
+                @if (User.IsInRole("Admin") || (User.IsInRole("Franchise")))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ReservationId }) <span>|</span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ReservationId })
+                }
 
-        </td>
-    </tr>
-}
-
+            </td>
+        </tr>
+    }
 </table>
+<br />
+<br />
+<br />

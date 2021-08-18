@@ -3,11 +3,11 @@
 @{
     ViewBag.Title = "Location Index";
 }
-
-<h2>Index</h2>
+<clear></clear>
+<h2 class="center">Facility Locations</h2>
 @if (User.IsInRole("Admin"))
 {
-    <p>
+    <p class="createBtn center">
         @Html.ActionLink("Create New", "Create") 
     </p>
 }

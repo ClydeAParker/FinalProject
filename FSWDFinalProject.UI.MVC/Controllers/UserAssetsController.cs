@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FSWDFinalProject.Data.EF;
+using FSWDFinalProject.UI.MVC.Utilities;
+using Microsoft.AspNet.Identity;
 
 namespace FSWDFinalProject.UI.MVC.Controllers
 {
@@ -17,8 +20,19 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // GET: UserAssets
         public ActionResult Index()
         {
-            var userAssets = db.UserAssets.Include(u => u.UserDetail);
-            return View(userAssets.ToList());
+            var currentUser = User.Identity.GetUserId();
+            if (User.IsInRole("Admin") || User.IsInRole("Franchise"))// If the user is an Admin they can see all records
+            {
+                var userAssets = db.UserAssets.Include(u => u.UserDetail);
+                return View(userAssets.ToList());
+            }
+            else
+            {
+                var userAssets = (from o in db.UserAssets
+                                  where o.UserId == currentUser
+                                  select o).Include(u => u.UserDetail);
+                return View(userAssets.ToList());
+            }
         }
 
         // GET: UserAssets/Details/5
@@ -39,7 +53,19 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // GET: UserAssets/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.UserDetails, "UserId", "FirstName");
+            var currentUser = User.Identity.GetUserId();
+            if (User.IsInRole("Admin") || User.IsInRole("Franchise"))
+            {
+                ViewBag.UserId = new SelectList(db.UserDetails, "UserId", "FullName");
+            }
+            else
+            {
+                var thisUser = from u in db.UserDetails
+                               where u.UserId == currentUser
+                               select u;
+
+                ViewBag.UserId = new SelectList(thisUser, "UserId", "FullName");
+            }
             return View();
         }
 
@@ -48,10 +74,41 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserAssetId,AssetName,UserId,AssetPhoto,SpecialNotes,IsActive,DateAdded,AssetYear")] UserAsset userAsset)
+        public ActionResult Create([Bind(Include = "UserAssetId,AssetName,UserId,AssetPhoto,SpecialNotes,IsActive,DateAdded,AssetYear")] UserAsset userAsset, HttpPostedFileBase myImage)
         {
             if (ModelState.IsValid)
             {
+                string imageName = "NoImage.png";
+                if (myImage != null)
+                {
+                    //Get file extension - alternative to using a Substring() and IndexOf()
+                    string imgExt = System.IO.Path.GetExtension(myImage.FileName);
+
+                    //List of allowed extentions
+                    string[] allowedExtensions = { ".png", ".gif", ".jpg", ".jpeg" };
+
+                    if (allowedExtensions.Contains(imgExt))
+                    {
+                        //Use a GUID for saved file name on server
+                        imageName = Guid.NewGuid() + imgExt;
+
+                        //Create variables to pass to the ResizeImage method
+                        //Signature for ResizingImage(savePath, fileName, image, maxImageSize, maxThumbSize)
+                        string savePath = Server.MapPath("~/Content/img/CAI/");
+
+                        Image convertedImage = Image.FromStream(myImage.InputStream);
+
+                        int maxImageSize = 500;
+                        int maxThumbSize = 100;
+
+                        //Calling this method will use the variables created above to save the full size image and thumbnail image to your server.
+                        UploadUtility.ResizeImage(savePath, imageName, convertedImage, maxImageSize, maxThumbSize);
+                    }
+                    userAsset.AssetPhoto = imageName;
+                }
+                string currentUserId = User.Identity.GetUserId();
+                userAsset.UserId = currentUserId;
+                userAsset.DateAdded = DateTime.Now;
                 db.UserAssets.Add(userAsset);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -3,10 +3,10 @@
 @{
     ViewBag.Title = "UserAsset Index";
 }
+<clear></clear>
+<h2 class="center">Assets</h2>
 
-<h2>Index</h2>
-
-<p>
+<p class="createBtn center">
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
@@ -20,17 +20,18 @@
         <th>
             @Html.DisplayNameFor(model => model.SpecialNotes)
         </th>
+        @if (User.IsInRole("Admin"))
+        {
         <th>
             @Html.DisplayNameFor(model => model.IsActive)
         </th>
+
         <th>
             @Html.DisplayNameFor(model => model.DateAdded)
         </th>
+        }
         <th>
-            @Html.DisplayNameFor(model => model.AssetYear)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+            @Html.DisplayNameFor(model => model.UserDetail.FullName)
         </th>
         <th></th>
     </tr>
@@ -41,22 +42,26 @@
             @Html.DisplayFor(modelItem => item.AssetName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AssetPhoto)
+            <img src="~/Content/img/CAI/t_@item.AssetPhoto" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SpecialNotes)
         </td>
+        @if (User.IsInRole("Admin"))
+        {
         <td>
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.DateAdded)
         </td>
-        <td>
+        }
+        @*<td>
             @Html.DisplayFor(modelItem => item.AssetYear)
-        </td>
+        </td>*@
         <td>
-            @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
+            @Html.DisplayFor(modelItem => item.UserDetail.FullName)
         </td>
         <td>
             @Html.ActionLink("Details", "Details", new { id = item.UserAssetId }) |

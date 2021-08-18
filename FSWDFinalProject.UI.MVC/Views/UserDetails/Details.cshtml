@@ -3,11 +3,12 @@
 @{
     ViewBag.Title = "Details";
 }
+<clear></clear>
 
-<h2>Details</h2>
+<h2 class="center">Details</h2>
 
 <div>
-    <h4>UserDetail</h4>
+    <h4 class="center">UserDetail</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -46,6 +47,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) <span>|</span>
+    }
+
     @Html.ActionLink("Back to List", "Index")
 </p>

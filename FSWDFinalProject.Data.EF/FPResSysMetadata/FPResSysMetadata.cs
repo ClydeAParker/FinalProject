@@ -67,7 +67,7 @@ namespace FSWDFinalProject.Data.EF//.FPResSysMetadata
         [Display(Name = "Phone Number")]
         public string UserPhone { get; set; }
 
-        [Display(Name = "Location ID")]
+        [Display(Name = "Home Location")]
         [Required(ErrorMessage = "Location ID is required")]
         [DisplayFormat(NullDisplayText = "[-N/A-]")]
         public Nullable<int> LocationId { get; set; }
@@ -88,7 +88,7 @@ namespace FSWDFinalProject.Data.EF//.FPResSysMetadata
 
     #region UserAssets
     [MetadataType(typeof(UserAssetsMetadata))]
-    public partial class UserAssets { }
+    public partial class UserAsset { }
     public class UserAssetsMetadata
     {
         //public int UserAssetId { get; set; }
@@ -120,7 +120,7 @@ namespace FSWDFinalProject.Data.EF//.FPResSysMetadata
 
     #region Reservation
     [MetadataType(typeof(ReservationMetadata))]
-    public partial class Reservations { }
+    public partial class Reservation { }
     public class ReservationMetadata
     {
         //[Display(Name = "Reservation ID")]
@@ -131,9 +131,13 @@ namespace FSWDFinalProject.Data.EF//.FPResSysMetadata
         [Required(ErrorMessage = "Asset ID is required")]
         public int UserAssetId { get; set; }
 
-        [Display(Name = "Location ID")]
+        [Display(Name = "Home Location")]
         [Required(ErrorMessage = "Location ID is required")]
         public int LocationId { get; set; }
+
+        [Required]
+        [Display(Name = "Reservation Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public System.DateTime ReservationDate { get; set; }
     }
     #endregion

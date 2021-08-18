@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FSWDFinalProject.Data.EF;
+using Microsoft.AspNet.Identity;
 
 namespace FSWDFinalProject.UI.MVC.Controllers
 {
@@ -17,7 +18,19 @@ namespace FSWDFinalProject.UI.MVC.Controllers
         // GET: UserDetails
         public ActionResult Index()
         {
-            return View(db.UserDetails.ToList());
+            var currentUser = User.Identity.GetUserId();
+            if (User.IsInRole("Admin") || User.IsInRole("Franchise"))// If the user is an Admin they can see all records
+            {
+                var userDetails = db.UserDetails;
+                return View(userDetails.ToList());
+            }
+            else
+            {                               var userDetails = from o in db.UserDetails
+                                  where o.UserId == currentUser
+                                select o;
+                return View(userDetails.ToList());
+            }
+            
         }
 
         // GET: UserDetails/Details/5

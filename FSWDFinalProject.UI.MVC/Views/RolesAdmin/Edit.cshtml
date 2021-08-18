@@ -3,16 +3,17 @@
 @{
     ViewBag.Title = "Edit";
 }
+<clear></clear>
 
-<h2>Edit.</h2>
+<h2 class="center">Edit</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Roles.</h4>
+        <h4 class="center">Roles</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)

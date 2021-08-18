@@ -9,6 +9,9 @@ namespace FSWDFinalProject.UI.MVC.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Display(Name = "Name")]
+        public string FullName { get; set; }
     }
 
     public class ExternalLoginListViewModel

@@ -6,137 +6,122 @@
     <title>ThePitStop - Vehicle Detailing Service </title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="../Content/css/bootstrap.min.css" type="text/css" /><!-- Bootstrap -->
-    <link rel="stylesheet" href="../fonts/font-awesome/css/font-awesome.min.css" type="text/css" /><!-- Icons -->
-    <link rel="stylesheet" href="../fonts/themify-icons/themify-icons.css" type="text/css" /><!-- Icons -->
-    <link rel="stylesheet" href="../Content/css/owl.carousel.css" type="text/css" /><!-- Owl Carousal-->
-    <link rel="stylesheet" href="../Content/css/price-range.css" type="text/css" /><!-- Owl Carousal -->
-
-    <link rel="stylesheet" href="../Content/css/style.css" type="text/css" /><!-- Style -->
-    <link rel="stylesheet" href="../Content/css/responsive.css" type="text/css" /><!-- Responsive -->
-    <link rel="stylesheet" href="../Content/css/colors.css" type="text/css" /><!-- color -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" type="text/css" /><!-- Bootstrap -->
+    <link rel="stylesheet" href="~/fonts/font-awesome/css/font-awesome.min.css" type="text/css" /><!-- Icons -->
+    <link rel="stylesheet" href="~/fonts/themify-icons/themify-icons.css" type="text/css" /><!-- Icons -->
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.css" type="text/css" /><!-- Owl Carousal-->
+    <link rel="stylesheet" href="~/Content/css/price-range.css" type="text/css" /><!-- Owl Carousal -->
+                                 
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css" /><!-- Style -->
+    <link rel="stylesheet" href="~/Content/css/responsive.css" type="text/css" /><!-- Responsive -->
+    <link rel="stylesheet" href="~/Content/css/colors.css" type="text/css" /><!-- color -->
     <!-- REVOLUTION STYLE SHEETS -->
-    <link rel="stylesheet" type="text/css" href="../Scripts/js/rs-plugin/css/settings.css">
+    <link rel="stylesheet" type="text/css" href="~/Scripts/js/rs-plugin/css/settings.css">
 </head>
 <body>
-        <header class="simple-header for-sticky ">
-            <!-- Top bar -->
-            <div class="menu">
-                <div class="container">
-                    <div class="logo">
-                        <a href="index.html" title="">
-                            <i class="fa fa-get-pocket"></i>
-                            <span>The Pitstop</span>
-                            <strong>Vehicle Detailing Service</strong>
-                        </a>
-                    </div><!-- LOGO -->
-                   
-                    <div class="popup-client">
-                        <span>
-                            <i class="fa fa-user"></i>@Html.Partial("_LoginPartial")
-                        </span>
-                    </div>
-                    <span class="menu-toggle"><i class="fa fa-bars"></i></span>
-                    
-                    <nav>
-                        <h1 class="nocontent outline">--- Main Navigation ---</h1>
-                        <ul>
-                            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                            @*<li> @Html.ActionLink("Location", "Index", "Location")</li>*@
-                            <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
-                            <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+    <header class="simple-header for-sticky ">
+        <!-- Top bar -->
+        <div class="menu">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html" title="">
+                        <i class="fa fa-get-pocket"></i>
+                        <span>The Pit Stop</span>
+                        <strong>Vehicle Detailing Service</strong>
+                    </a>
+                </div><!-- LOGO -->
 
-                            @if (User.IsInRole("Admin") || User.IsInRole("Franchise") || User.IsInRole("Client"))
-                            {
-                                <li><a href="@Url.Action("Index", "UserAssets")">Assets</a></li>
-                                <li><a href="@Url.Action("Index", "UserDetails")">UserDetails</a></li>
-                                <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
-                            }
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <li><a href="@Url.Action("AdminMenu", "Home")">Admin Menu</a></li>
-                            }
-
-
-                            @if (User.IsInRole("Franchise"))
-                            {
-                                <li><a href="@Url.Action("FranchiseMenu", "Home")">Franchise Menu</a></li>
-                            }
-                        </ul>
-                    </nav>
+                <div class="popup-client">
+                    <span>
+                        <i class="fa fa-user"></i>@Html.Partial("_LoginPartial")
+                    </span>
                 </div>
-            </div>
-        </header>
+                <span class="menu-toggle"><i class="fa fa-bars"></i></span>
 
-        @RenderBody()
-
-        <footer>
-            <section class="top-line">
-                <div style="background: url(../Content/img/footer.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax blackish"></div><!-- PARALLAX BACKGROUND IMAGE -->
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-md-3 column">
-                            <div class="about_widget widget">
-                                <div class="heading1">
-                                    <h2><span>Useful</span> links</h2>
-                                </div><!-- heading -->
-
-                                <span><i class="fa fa-envelope"></i>clydeparkerwork@gmail.com</span>
-                                <span><i class="fa fa-phone"></i>1+ 117-500-6191</span>
-                                <span><i class="fa fa-location-arrow"></i><a href="#" title="">Find a Location near you</a></span>
-                                <ul class="social-btns">
-                                    <li><a href="#" title=""><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#" title=""><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#" title=""><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="#" title=""><i class="fa fa-dribbble"></i></a></li>
-                                    <li><a href="#" title=""><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#" title=""><i class="fa fa-tumblr"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 column">
-                            <div class="links_widget widget">
-                                <div class="heading1">
-                                    <h2><span>Useful</span> links</h2>
-                                </div><!-- heading -->
-                                <ul>
-                                    <li><a href="#" title=""><i class="fa fa-angle-right"></i> Home</a></li>
-                                    <li><a href="#" title=""><i class="fa fa-angle-right"></i> About us</a></li>
-                                    <li><a href="#" title=""><i class="fa fa-angle-right"></i> Services</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div class="bottom-line">
-                <div class="container">
-                    <span>Copyright All Right Reserved 2021 <a href="#" title="">Clyde A. Parker</a></span>
+                <nav>
+                    <h1 class="nocontent outline">--- Main Navigation ---</h1>
                     <ul>
-                        <li><a>Return to Top</a></li>
+                        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                        @*<li> @Html.ActionLink("Location", "Index", "Location")</li>*@
+                        <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
+                        <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+
+                        @if (User.IsInRole("Admin") || User.IsInRole("Franchise") || User.IsInRole("Client"))
+                        {
+                            <li><a href="@Url.Action("Index", "UserAssets")">Your Assets</a></li>
+                            <li><a href="@Url.Action("Index", "UserDetails")">Account</a></li>
+                            <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li><a href="@Url.Action("AdminMenu", "Home")">Admin Menu</a></li>
+                        }
                     </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <clear></clear>
+
+    @RenderBody()
+
+    <footer>
+        <section class="top-line">
+            <div style="background: url(../Content/img/footer.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax blackish"></div><!-- PARALLAX BACKGROUND IMAGE -->
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-3 column">
+                        <div class="about_widget widget">
+                            <div class="heading1">
+                                <h2><span>Useful</span> links</h2>
+                            </div><!-- heading -->
+
+                            <span><i class="fa fa-envelope"></i>clydeparkerwork@gmail.com</span>
+                            <span><i class="fa fa-phone"></i>1+ 117-500-6191</span>
+                            <span><i class="fa fa-location-arrow"></i><a href="#" title="">Find a Location near you</a></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 column">
+                        <div class="links_widget widget">
+                            <div class="heading1">
+                                <h2><span>Useful</span> links</h2>
+                            </div><!-- heading -->
+                            <ul>
+                                <li><a href="#" title=""><i class="fa fa-angle-right"></i> Home</a></li>
+                                <li><a href="#" title=""><i class="fa fa-angle-right"></i> About us</a></li>
+                                <li><a href="#" title=""><i class="fa fa-angle-right"></i> Services</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <a href="#" class="scrollToTop"><i class="ti ti-arrow-circle-up"></i></a>
-        </footer>
-    
+        </section>
+        <div class="bottom-line">
+            <div class="container">
+                <span>Copyright All Right Reserved 2021 <a href="#" title="">Clyde A. Parker</a></span>
+            </div>
+        </div>
+        <a href="#" class="scrollToTop"><i class="ti ti-arrow-circle-up"></i></a>
+    </footer>
+
 
     <!-- Script -->
-    <script type="text/javascript" src="../Scripts/js/modernizr.js"></script><!-- Modernizer -->
-    <script type="text/javascript" src="../Scripts/js/jquery-1.10.2.min.js"></script><!-- Jquery -->
-    <script type="text/javascript" src="../Scripts/js/bootstrap.min.js"></script><!-- Bootstrap -->
-    <script type="text/javascript" src="../Scripts/js/owl.carousel.min.js"></script><!-- Owl Carousal -->
-    <script type="text/javascript" src="../Scripts/js/html5lightbox.js"></script><!-- HTML -->
-    <script type="text/javascript" src="../Scripts/js/scrolly.js"></script><!-- Parallax -->
-    <script type="text/javascript" src="../Scripts/js/price-range.js"></script><!-- Parallax -->
-    <script type="text/javascript" src="../Scripts/js/script.js"></script><!-- Script -->
+    <script type="text/javascript" src="~/Scripts/js/modernizr.js"></script><!-- Modernizer -->
+    <script type="text/javascript" src="~/Scripts/js/jquery-1.10.2.min.js"></script><!-- Jquery -->
+    <script type="text/javascript" src="~/Scripts/js/bootstrap.min.js"></script><!-- Bootstrap -->
+    <script type="text/javascript" src="~/Scripts/js/owl.carousel.min.js"></script><!-- Owl Carousal -->
+    <script type="text/javascript" src="~/Scripts/js/html5lightbox.js"></script><!-- HTML -->
+    <script type="text/javascript" src="~/Scripts/js/scrolly.js"></script><!-- Parallax -->
+    <script type="text/javascript" src="~/Scripts/js/price-range.js"></script><!-- Parallax -->
+    <script type="text/javascript" src="~/Scripts/js/script.js"></script><!-- Script -->
 
     <script src="../Scripts/js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
     <script src="../Scripts/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     @RenderSection("Scripts", false)
     <script type="text/javascript">
+
         $(document).ready(function () {
             "use strict";
             jQuery('.tp-banner').show().revolution({
@@ -259,7 +244,9 @@
                     }
                 }
             });
-
+        });
+        $(function () {
+            $("#datepicker").datepicker();
         });
     </script>
 </body>
